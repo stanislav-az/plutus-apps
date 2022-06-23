@@ -80,7 +80,10 @@ library
                       , cardano-api
                       , cardano-cli
                       , cardano-ledger-alonzo
+                      , cardano-ledger-babbage
                       , cardano-ledger-core
+                      , cardano-ledger-shelley-ma
+                      , cardano-ledger-shelley
                       , cardano-slotting
                       , containers
                       , ouroboros-consensus
