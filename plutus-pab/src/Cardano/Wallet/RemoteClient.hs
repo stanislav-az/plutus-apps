@@ -1,7 +1,6 @@
 {-# LANGUAGE DataKinds         #-}
 {-# LANGUAGE FlexibleContexts  #-}
 {-# LANGUAGE GADTs             #-}
-{-# LANGUAGE NamedFieldPuns    #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RankNTypes        #-}
 {-# LANGUAGE TypeApplications  #-}
@@ -21,7 +20,7 @@ import Plutus.Contract.Wallet (export)
 import Plutus.PAB.Core.ContractInstance.STM (InstancesState)
 import Plutus.PAB.Core.ContractInstance.STM qualified as Instances
 import Wallet.API qualified as WAPI
-import Wallet.Effects (WalletEffect (BalanceTx, OwnPaymentPubKeyHash, SubmitTxn, TotalFunds, WalletAddSignature, YieldUnbalancedTx))
+import Wallet.Effects (WalletEffect (BalanceTx, OwnAddresses, OwnPaymentPubKeyHash, SubmitTxn, TotalFunds, WalletAddSignature, YieldUnbalancedTx))
 import Wallet.Error (WalletAPIError (RemoteClientFunctionNotYetSupported), throwOtherError)
 import Wallet.Types (ContractInstanceId)
 
@@ -46,6 +45,9 @@ handleWalletClient cidM event =
     case event of
         OwnPaymentPubKeyHash -> do
             throwError $ RemoteClientFunctionNotYetSupported "Cardano.Wallet.RemoteClient.OwnPaymentPubKeyHash"
+
+        OwnAddresses -> do
+            throwError $ RemoteClientFunctionNotYetSupported "Cardano.Wallet.RemoteClient.OwnAddresses"
 
         WalletAddSignature _ -> do
             throwError $ RemoteClientFunctionNotYetSupported "Cardano.Wallet.RemoteClient.WalletAddSignature"

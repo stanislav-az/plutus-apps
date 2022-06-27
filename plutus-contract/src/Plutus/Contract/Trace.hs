@@ -28,6 +28,7 @@ module Plutus.Contract.Trace
     , handleSlotNotifications
     , handleTimeNotifications
     , handleOwnPaymentPubKeyHashQueries
+    , handleOwnAddressesQueries
     , handleCurrentSlotQueries
     , handleCurrentTimeQueries
     , handleTimeToSlotConversions
@@ -182,6 +183,14 @@ handleOwnPaymentPubKeyHashQueries ::
     => RequestHandler effs PABReq PABResp
 handleOwnPaymentPubKeyHashQueries =
     generalise (preview E._OwnPaymentPublicKeyHashReq) E.OwnPaymentPublicKeyHashResp RequestHandler.handleOwnPaymentPubKeyHash
+
+handleOwnAddressesQueries ::
+    ( Member (LogObserve (LogMessage Text)) effs
+    , Member WalletEffect effs
+    )
+    => RequestHandler effs PABReq PABResp
+handleOwnAddressesQueries =
+    generalise (preview E._OwnAddressesReq) E.OwnAddressesResp RequestHandler.handleOwnAddresses
 
 handleOwnInstanceIdQueries ::
     ( Member (LogObserve (LogMessage Text)) effs

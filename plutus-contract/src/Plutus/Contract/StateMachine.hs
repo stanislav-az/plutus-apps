@@ -82,8 +82,8 @@ import Ledger.Value qualified as Value
 import Plutus.ChainIndex (ChainIndexTx (_citxInputs))
 import Plutus.Contract (AsContractError (_ConstraintResolutionContractError, _ContractError), Contract, ContractError,
                         Promise, adjustUnbalancedTx, awaitPromise, isSlot, isTime, logWarn, mapError, never,
-                        ownPaymentPubKeyHash, promiseBind, select, submitTxConfirmed, utxoIsProduced, utxoIsSpent,
-                        utxosAt, utxosTxOutTxFromTx)
+                        ownFirstPaymentPubKeyHash, ownUtxos, promiseBind, select, submitTxConfirmed, utxoIsProduced,
+                        utxoIsSpent, utxosAt, utxosTxOutTxFromTx)
 import Plutus.Contract.Request (mkTxContract)
 import Plutus.Contract.StateMachine.MintingPolarity (MintingPolarity (Burn, Mint))
 import Plutus.Contract.StateMachine.OnChain (State (State, stateData, stateValue),
@@ -423,8 +423,7 @@ runInitialiseWith ::
     -- ^ The value locked by the contract at the beginning
     -> Contract w schema e state
 runInitialiseWith customLookups customConstraints StateMachineClient{scInstance} initialState initialValue = mapError (review _SMContractError) $ do
-    ownPK <- ownPaymentPubKeyHash
-    utxo <- utxosAt (Ledger.pubKeyHashAddress ownPK Nothing)
+    utxo <- ownUtxos
     let StateMachineInstance{stateMachine, typedValidator} = scInstance
         constraints = mustPayToTheScript initialState (initialValue <> SM.threadTokenValueOrZero scInstance)
             <> foldMap ttConstraints (smThreadToken stateMachine)
@@ -483,7 +482,7 @@ runGuardedStepWith ::
     -> Contract w schema e (Either a (TransitionResult state input))
 runGuardedStepWith userLookups userConstraints smc input guard = mapError (review _SMContractError) $ mkStep smc input >>= \case
     Right StateMachineTransition{smtConstraints,smtOldState=State{stateData=os}, smtNewState=State{stateData=ns}, smtLookups} -> do
-        pk <- ownPaymentPubKeyHash
+        pk <- ownFirstPaymentPubKeyHash
         let lookups = smtLookups { Constraints.slOwnPaymentPubKeyHash = Just pk }
         utx <- either (throwing _ConstraintResolutionContractError)
                       pure

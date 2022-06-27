@@ -251,6 +251,7 @@ handleBlockchainQueries =
     <> RequestHandler.handlePendingTransactions
     <> RequestHandler.handleChainIndexQueries
     <> RequestHandler.handleOwnPaymentPubKeyHashQueries
+    <> RequestHandler.handleOwnAddressesQueries
     <> RequestHandler.handleOwnInstanceIdQueries
     <> RequestHandler.handleSlotNotifications
     <> RequestHandler.handleCurrentSlotQueries

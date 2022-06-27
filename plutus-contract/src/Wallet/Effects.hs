@@ -14,6 +14,7 @@ module Wallet.Effects(
     WalletEffect(..)
     , submitTxn
     , ownPaymentPubKeyHash
+    , ownAddresses
     , balanceTx
     , totalFunds
     , walletAddSignature
@@ -26,13 +27,15 @@ module Wallet.Effects(
     ) where
 
 import Control.Monad.Freer.TH (makeEffect)
-import Ledger (CardanoTx, Params, PaymentPubKeyHash, Slot, Value)
+import Data.List.NonEmpty (NonEmpty)
+import Ledger (Address, CardanoTx, Params, PaymentPubKeyHash, Slot, Value)
 import Ledger.Constraints.OffChain (UnbalancedTx)
 import Wallet.Error (WalletAPIError)
 
 data WalletEffect r where
     SubmitTxn :: CardanoTx -> WalletEffect ()
     OwnPaymentPubKeyHash :: WalletEffect PaymentPubKeyHash
+    OwnAddresses :: WalletEffect (NonEmpty Address)
     BalanceTx :: UnbalancedTx -> WalletEffect (Either WalletAPIError CardanoTx)
     TotalFunds :: WalletEffect Value -- ^ Total of all funds that are in the wallet (incl. tokens)
     WalletAddSignature :: CardanoTx -> WalletEffect CardanoTx

@@ -19,6 +19,7 @@ module Plutus.Contract.Trace.RequestHandler(
     -- * handlers for common requests
     , handleAdjustUnbalancedTx
     , handleOwnPaymentPubKeyHash
+    , handleOwnAddresses
     , handleSlotNotifications
     , handleCurrentSlot
     , handleTimeNotifications
@@ -48,6 +49,7 @@ import Plutus.Contract.Resumable (Request (Request, itID, rqID, rqRequest),
                                   Response (Response, rspItID, rspResponse, rspRqID))
 
 import Control.Monad.Freer.Extras.Log (LogMessage, LogMsg, LogObserve, logDebug, logWarn, surroundDebug)
+import Data.List.NonEmpty (NonEmpty)
 import Ledger (POSIXTime, POSIXTimeRange, Params (..), PaymentPubKeyHash, Slot, SlotRange)
 import Ledger.Constraints.OffChain (UnbalancedTx, adjustUnbalancedTx)
 import Ledger.TimeSlot qualified as TimeSlot
@@ -56,6 +58,7 @@ import Plutus.ChainIndex (ChainIndexQueryEffect)
 import Plutus.ChainIndex.Effects qualified as ChainIndexEff
 import Plutus.Contract.Effects (ChainIndexQuery (..), ChainIndexResponse (..))
 import Plutus.Contract.Wallet qualified as Wallet
+import Plutus.V1.Ledger.Api (Address)
 import Wallet.API (WalletAPIError)
 import Wallet.Effects (NodeClientEffect, WalletEffect)
 import Wallet.Effects qualified
@@ -121,6 +124,16 @@ handleOwnPaymentPubKeyHash ::
 handleOwnPaymentPubKeyHash =
     RequestHandler $ \_ ->
         surroundDebug @Text "handleOwnPaymentPubKeyHash" Wallet.Effects.ownPaymentPubKeyHash
+
+handleOwnAddresses ::
+    forall a effs.
+    ( Member WalletEffect effs
+    , Member (LogObserve (LogMessage Text)) effs
+    )
+    => RequestHandler effs a (NonEmpty Address)
+handleOwnAddresses =
+    RequestHandler $ \_ ->
+        surroundDebug @Text "handleOwnAddresses" Wallet.Effects.ownAddresses
 
 handleSlotNotifications ::
     forall effs.

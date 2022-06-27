@@ -399,6 +399,7 @@ data PABReq
   | CurrentTimeReq
   | OwnContractInstanceIdReq
   | OwnPaymentPublicKeyHashReq
+  | OwnAddressesReq
   | ChainIndexQueryReq ChainIndexQuery
   | BalanceTxReq UnbalancedTx
   | WriteBalancedTxReq CardanoTx
@@ -424,6 +425,7 @@ instance EncodeJson PABReq where
     CurrentTimeReq -> encodeJson { tag: "CurrentTimeReq", contents: jsonNull }
     OwnContractInstanceIdReq -> encodeJson { tag: "OwnContractInstanceIdReq", contents: jsonNull }
     OwnPaymentPublicKeyHashReq -> encodeJson { tag: "OwnPaymentPublicKeyHashReq", contents: jsonNull }
+    OwnAddressesReq -> encodeJson { tag: "OwnAddressesReq", contents: jsonNull }
     ChainIndexQueryReq a -> E.encodeTagged "ChainIndexQueryReq" a E.value
     BalanceTxReq a -> E.encodeTagged "BalanceTxReq" a E.value
     WriteBalancedTxReq a -> E.encodeTagged "WriteBalancedTxReq" a E.value
@@ -446,6 +448,7 @@ instance DecodeJson PABReq where
         , "CurrentTimeReq" /\ pure CurrentTimeReq
         , "OwnContractInstanceIdReq" /\ pure OwnContractInstanceIdReq
         , "OwnPaymentPublicKeyHashReq" /\ pure OwnPaymentPublicKeyHashReq
+        , "OwnAddressesReq" /\ pure OwnAddressesReq
         , "ChainIndexQueryReq" /\ D.content (ChainIndexQueryReq <$> D.value)
         , "BalanceTxReq" /\ D.content (BalanceTxReq <$> D.value)
         , "WriteBalancedTxReq" /\ D.content (WriteBalancedTxReq <$> D.value)
@@ -513,6 +516,11 @@ _OwnPaymentPublicKeyHashReq = prism' (const OwnPaymentPublicKeyHashReq) case _ o
   OwnPaymentPublicKeyHashReq -> Just unit
   _ -> Nothing
 
+_OwnAddressesReq :: Prism' PABReq Unit
+_OwnAddressesReq = prism' (const OwnAddressesReq) case _ of
+  OwnAddressesReq -> Just unit
+  _ -> Nothing
+
 _ChainIndexQueryReq :: Prism' PABReq ChainIndexQuery
 _ChainIndexQueryReq = prism' ChainIndexQueryReq case _ of
   (ChainIndexQueryReq a) -> Just a
@@ -557,6 +565,7 @@ data PABResp
   | CurrentTimeResp POSIXTime
   | OwnContractInstanceIdResp ContractInstanceId
   | OwnPaymentPublicKeyHashResp PaymentPubKeyHash
+  | OwnAddressesResp (NonEmptyList Address)
   | ChainIndexQueryResp ChainIndexResponse
   | BalanceTxResp BalanceTxResponse
   | WriteBalancedTxResp WriteBalancedTxResponse
@@ -582,6 +591,7 @@ instance EncodeJson PABResp where
     CurrentTimeResp a -> E.encodeTagged "CurrentTimeResp" a E.value
     OwnContractInstanceIdResp a -> E.encodeTagged "OwnContractInstanceIdResp" a E.value
     OwnPaymentPublicKeyHashResp a -> E.encodeTagged "OwnPaymentPublicKeyHashResp" a E.value
+    OwnAddressesResp a -> E.encodeTagged "OwnAddressesResp" a E.value
     ChainIndexQueryResp a -> E.encodeTagged "ChainIndexQueryResp" a E.value
     BalanceTxResp a -> E.encodeTagged "BalanceTxResp" a E.value
     WriteBalancedTxResp a -> E.encodeTagged "WriteBalancedTxResp" a E.value
@@ -604,6 +614,7 @@ instance DecodeJson PABResp where
         , "CurrentTimeResp" /\ D.content (CurrentTimeResp <$> D.value)
         , "OwnContractInstanceIdResp" /\ D.content (OwnContractInstanceIdResp <$> D.value)
         , "OwnPaymentPublicKeyHashResp" /\ D.content (OwnPaymentPublicKeyHashResp <$> D.value)
+        , "OwnAddressesResp" /\ D.content (OwnAddressesResp <$> D.value)
         , "ChainIndexQueryResp" /\ D.content (ChainIndexQueryResp <$> D.value)
         , "BalanceTxResp" /\ D.content (BalanceTxResp <$> D.value)
         , "WriteBalancedTxResp" /\ D.content (WriteBalancedTxResp <$> D.value)
@@ -669,6 +680,11 @@ _OwnContractInstanceIdResp = prism' OwnContractInstanceIdResp case _ of
 _OwnPaymentPublicKeyHashResp :: Prism' PABResp PaymentPubKeyHash
 _OwnPaymentPublicKeyHashResp = prism' OwnPaymentPublicKeyHashResp case _ of
   (OwnPaymentPublicKeyHashResp a) -> Just a
+  _ -> Nothing
+
+_OwnAddressesResp :: Prism' PABResp (NonEmptyList Address)
+_OwnAddressesResp = prism' OwnAddressesResp case _ of
+  (OwnAddressesResp a) -> Just a
   _ -> Nothing
 
 _ChainIndexQueryResp :: Prism' PABResp ChainIndexResponse
