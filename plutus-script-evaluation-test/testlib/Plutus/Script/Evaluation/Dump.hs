@@ -56,8 +56,14 @@ dumpScriptEvents opts = do
     either (fail . Text.unpack . Cardano.renderInitialLedgerStateError) pure
       =<< runExceptT (Cardano.initialLedgerState (O.optsConfigPath opts))
   let dir = O.optsDir opts
+      onDeserialiseFailure :: [FilePath] -> CBOR.DeserialiseFailure -> IO ()
+      onDeserialiseFailure fps e = case fps of
+        [] -> throwIO e
+        (_ : rest) -> do
+          putStrLn $ "Deserialise failure: " <> show e
+          go rest
       go :: [FilePath] -> IO ()
-      go fps = do
+      go fps = handle (onDeserialiseFailure fps) $ do
         (chainPoint, ledgerState, onApplyBlockException) <- case fps of
           -- No checkpoint to use, so start from Genesis.
           [] -> pure (Cardano.ChainPointAtGenesis, ledgerStateAtGenesis, throwIO)
@@ -235,6 +241,7 @@ cleanupStateAndEventFiles :: FilePath -> FilePath -> IO ()
 cleanupStateAndEventFiles dir stateFile = do
   newerStateAndEventFiles <-
     takeWhile (\f -> takeBaseName f > takeBaseName stateFile)
+      . sortBy (flip compare)
       . filter (\f -> stateFileExt `isExtensionOf` f || eventsFileExt `isExtensionOf` f)
       <$> listFiles dir
   traverse_ removeFile newerStateAndEventFiles
