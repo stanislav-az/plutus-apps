@@ -177,25 +177,30 @@ appendBlocks ::
     => [ChainSyncBlock] -> Eff effs ()
 appendBlocks [] = pure ()
 appendBlocks blocks = do
-    let
-        processBlock (utxoIndexState, txs) (Block tip_ transactions) = do
-            case UtxoState.insert (TxUtxoBalance.fromBlock tip_ (map fst transactions)) utxoIndexState of
-                Left err -> do
-                    let reason = InsertionFailed err
-                    logError $ Err reason
-                    return (utxoIndexState, txs)
-                Right InsertUtxoSuccess{newIndex, insertPosition} -> do
-                    logDebug $ InsertionSuccess tip_ insertPosition
-                    return (newIndex, transactions ++ txs)
-    oldState <- get @ChainIndexEmulatorState
-    let oldIndex = view utxoIndex oldState
-    (newIndex, transactions) <- foldM processBlock (view utxoIndex oldState, []) blocks
+    -- let
+    --     processBlock (utxoIndexState, txs) (Block tip_ transactions) = do
+    --         case UtxoState.insert (TxUtxoBalance.fromBlock tip_ (map fst transactions)) utxoIndexState of
+    --             Left err -> do
+    --                 let reason = InsertionFailed err
+    --                 logError $ Err reason
+    --                 return (utxoIndexState, txs)
+    --             Right InsertUtxoSuccess{newIndex, insertPosition} -> do
+    --                 logDebug $ InsertionSuccess tip_ insertPosition
+    --                 return (newIndex, transactions ++ txs)
+    -- oldState <- get @ChainIndexEmulatorState
+    pure ()
+    -- let oldIndex = view utxoIndex oldState
+    -- (newIndex, transactions) <- foldM processBlock (view utxoIndex oldState, []) blocks
     -- This check reduces the emulator's memory consumption by 75%
-    when (newIndex /= oldIndex) $
-        put $ oldState
-                & set utxoIndex newIndex
-                & over diskState
-                    (mappend $ foldMap (\(tx, opt) -> if tpoStoreTx opt then DiskState.fromTx tx else mempty) transactions)
+    -- when (newIndex /= oldIndex) $
+    -- put $ oldState
+    --         & set utxoIndex newIndex
+    --         & over diskState
+    --             (mappend $ foldMap (\(tx, opt) -> if tpoStoreTx opt then DiskState.fromTx tx else mempty) transactions)
+    -- when (not $ null transactions) $
+        -- put $ oldState
+        --         & over diskState
+        --             (mappend $ foldMap (\(tx, opt) -> if tpoStoreTx opt then DiskState.fromTx tx else mempty) transactions)
 
 handleControl ::
     forall effs.
