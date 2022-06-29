@@ -6,6 +6,6 @@ steps:
     concurrency: 1
     concurrency_group: "plutus-script-evaluation"
     soft_fail: true
-    timeout_in_minutes: 180
+    timeout_in_minutes: 240
     agents:
       queue: "plutus"
