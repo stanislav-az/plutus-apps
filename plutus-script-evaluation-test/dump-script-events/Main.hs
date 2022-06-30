@@ -16,7 +16,7 @@ S3_DUMP_DIR=s3://plutus/mainnet-script-dump/ \
   --socket-path $HOME/cardano/db/node.socket \
   --config $HOME/cardano/mainnet-config.json \
   --mainnet \
-  --blocks-per-file 10000 \
+  --blocks-per-file 50000 \
   --events-per-file 50000 \
   --dir $HOME/cardano-dump
 

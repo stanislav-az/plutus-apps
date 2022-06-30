@@ -54,7 +54,6 @@ library testlib
         serialise,
         streaming,
         text,
-        time,
         transformers
 
 executable dump-script-events

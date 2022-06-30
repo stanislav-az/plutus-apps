@@ -25,7 +25,6 @@ import Data.Map qualified as M
 import Data.Maybe (fromMaybe)
 import Data.Text qualified as Text
 import Data.Text.Encoding qualified as Text
-import Data.Time.Clock.POSIX (getPOSIXTime)
 import Data.Word (Word64)
 import Plutus.ApiCommon (ProtocolVersion (ProtocolVersion))
 import Plutus.Script.Evaluation.Options qualified as O
@@ -132,7 +131,7 @@ runStream dir blocksPerFile eventsPerFile stream = do
         let currentV1CostParams = ssV1CostParams streamerState
             currentV2CostParams = ssV2CostParams streamerState
             (newScriptEvents, newV1CostParams, newV2CostParams) = toScriptEvents ledgerEvents
-        when (ssCount streamerState `mod` 500 == 0) . liftIO $
+        when (ssCount streamerState `mod` 1000 == 0) . liftIO $
           putStrLn $
             "blocks processed: " <> show (ssCount streamerState)
         if ssCount streamerState >= blocksPerFile
@@ -141,16 +140,13 @@ runStream dir blocksPerFile eventsPerFile stream = do
           || changed currentV2CostParams newV2CostParams
           then do
             liftIO $ putStrLn "Creating new checkpoint"
-            time :: Word64 <- round <$> liftIO getPOSIXTime
             let chainPoint = blockChainPoint block
                 slot = Cardano.chainPointToSlotNo chainPoint
                 hash = Cardano.chainPointToHeaderHash chainPoint
             let filePrefix =
-                  printf "%020d" (maybe 0 Cardano.unSlotNo slot)
+                  printf "%016d" (maybe 0 Cardano.unSlotNo slot)
                     <> "-"
                     <> maybe "Genesis" (Text.unpack . renderBlockHash) hash
-                    <> "-"
-                    <> show time
                 eventFile = dir </> filePrefix <.> eventsFileExt
             whenJust (NonEmpty.nonEmpty (ssEvents streamerState)) $ \evs -> do
               let scriptEvents =
@@ -160,8 +156,9 @@ runStream dir blocksPerFile eventsPerFile stream = do
                         eventsEvents = evs
                       }
               liftIO $ CBOR.writeFileSerialise eventFile scriptEvents
-            -- Writing state (checkpoint) file after events file ensures the events of a
-            -- checkpoint are persisted.
+            liftIO . system_ $ "./scripts/upload-event-dump.sh " <> eventFile
+            -- Writing state (checkpoint) file after everything else ensures the events of a
+            -- checkpoint are persisted in S3.
             let stateFile = dir </> filePrefix <.> stateFileExt
 
             liftIO $ CBOR.writeFileSerialise stateFile (Checkpoint chainPoint ledgerState)
@@ -175,7 +172,6 @@ Created new checkpoint in {stateFile}
   slot: {maybe "Genesis" show slot}
   hash: {maybe "Genesis" renderBlockHash hash}
 |]
-            liftIO . system_ $ "./scripts/upload-event-dump.sh " <> eventFile
           else do
             put $
               streamerState
