@@ -92,6 +92,7 @@ import PlutusTx (toBuiltinData)
 import PlutusTx.Numeric qualified as P
 import Prettyprinter (Pretty)
 import Prettyprinter.Extras (PrettyShow (..))
+import Debug.Trace (traceShow)
 
 -- | Context for validating transactions. We need access to the unspent
 --   transaction outputs of the blockchain, and we can throw 'ValidationError's.
@@ -361,8 +362,8 @@ checkMatch txinfo = \case
         case runExcept $ runScript vd vl d r of
             Left e -> do
                 tell [validatorScriptValidationEvent vd vl d r (Left e)]
-                throwError $ ScriptFailure e
-            res -> tell [validatorScriptValidationEvent vd vl d r res]
+                traceShow e $ throwError $ ScriptFailure e
+            res -> traceShow res $ tell [validatorScriptValidationEvent vd vl d r res]
     PubKeyMatch msg pk sig -> unless (signedBy sig pk msg) $ throwError $ InvalidSignature pk sig
 
 -- | Check if the value produced by a transaction equals the value consumed by it.
