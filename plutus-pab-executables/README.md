@@ -89,7 +89,7 @@ $ cabal exec plutus-pab-examples -- migrate --config plutus-pab.yaml.sample
 Migrates the database in `pab-core.db` to the current schema.  The database contains the state for the contract instances.
 
 #### Source
-[Plutus.PAB.App.migrate](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/App.hs#L260)
+[Plutus.PAB.App.migrate](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/App.hs#L260)
 
 
 ### all-servers
@@ -115,7 +115,7 @@ Combines the execution of all services in the appropriate order:
 
 #### Source
 
-- [src/Plutus/PAB/Run/CommandParser.hs](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Run/CommandParser.hs#L155-L164)
+- [src/Plutus/PAB/Run/CommandParser.hs](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Run/CommandParser.hs#L155-L164)
 
 ### client-services
 
@@ -139,7 +139,7 @@ Starts all services *except for* the node service:
 
 #### Source
 
-- [src/Plutus/PAB/Run/CommandParser.hs](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Run/CommandParser.hs#L166-L175)
+- [src/Plutus/PAB/Run/CommandParser.hs](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Run/CommandParser.hs#L166-L175)
 
 ### wallet-server
 
@@ -161,17 +161,17 @@ Plutus specific wallet implementation for managing user funds on the blockchain.
 
 #### Source
 
-- [Cardano.Wallet.Types.WalletConfig](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/Types.hs)
+- [Cardano.Wallet.Types.WalletConfig](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/Types.hs)
 
 Mock wallet:
-- [Cardano.Wallet.Mock.API](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/Mock/API.hs)
-- [Cardano.Wallet.Mock.Server.main](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/Mock/Server.hs)
+- [Cardano.Wallet.Mock.API](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/Mock/API.hs)
+- [Cardano.Wallet.Mock.Server.main](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/Mock/Server.hs)
 
 Local wallet:
-- [Cardano.Wallet.LocalClient](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/LocalClient.hs)
+- [Cardano.Wallet.LocalClient](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/LocalClient.hs)
 
 Remote wallet:
-- [Cardano.Wallet.RemoteClient](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/RemoteClient.hs)
+- [Cardano.Wallet.RemoteClient](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/Wallet/RemoteClient.hs)
 
 ### webserver
 
@@ -191,8 +191,8 @@ Serves the PAB user interface
 
 #### Source
 
-- [Plutus.PAB.Webserver.API.API](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Webserver/API.hs#L35)
-- [Plutus.PAB.Webserver.Server](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Webserver/Server.hs)
+- [Plutus.PAB.Webserver.API.API](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Webserver/API.hs#L35)
+- [Plutus.PAB.Webserver.Server](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Plutus/PAB/Webserver/Server.hs)
 
 ### node-server
 
@@ -214,8 +214,8 @@ Mock or real implementation of a Goguen node. Clients to this service are:
 
 #### Source
 
-- [Cardano.Node.API.API](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/Node/API.hs#L14)
-- [Cardano.Node.Server.main](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/Node/Server.hs#L56)
+- [Cardano.Node.API.API](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/Node/API.hs#L14)
+- [Cardano.Node.Server.main](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/Node/Server.hs#L56)
 
 ### chain-index
 
@@ -237,8 +237,8 @@ for datum and script hashes. Clients to this service are:
 
 #### Source
 
-- [Plutus.ChainIndex.Api.API](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-chain-index/src/Plutus/ChainIndex/Api.hs#L106)
-- [Cardano.ChainIndex.Server.main](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/src/Cardano/ChainIndex/Server.hs#L37)
+- [Plutus.ChainIndex.Api.API](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-chain-index/src/Plutus/ChainIndex/Api.hs#L106)
+- [Cardano.ChainIndex.Server.main](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/src/Cardano/ChainIndex/Server.hs#L37)
 
 ### default-logging-config
 
@@ -252,5 +252,5 @@ Prints the default logging configuration to STDOUT
 
 #### Source
 
-- [app/CommandParser.hs](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/app/CommandParser.hs#L59)
-- [app/Main.hs](https://github.com/input-output-hk/plutus-apps/blob/main/plutus-pab/app/Main.hs#L28)
+- [app/CommandParser.hs](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/app/CommandParser.hs#L59)
+- [app/Main.hs](https://github.com/stanislav-az/plutus-apps/blob/main/plutus-pab/app/Main.hs#L28)

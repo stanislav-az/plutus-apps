@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this feature request.
-        Please check the existing issues, [Plutus docs](https://plutus-apps.readthedocs.io/en/latest/), [technical report](https://github.com/input-output-hk/plutus-apps/blob/main/README.adoc#specifications-and-design) and [Cardano Stack Exchange](https://cardano.stackexchange.com/) before raising.
+        Please check the existing issues, [Plutus docs](https://plutus-apps.readthedocs.io/en/latest/), [technical report](https://github.com/stanislav-az/plutus-apps/blob/main/README.adoc#specifications-and-design) and [Cardano Stack Exchange](https://cardano.stackexchange.com/) before raising.
   - type: textarea
     id: description
     attributes:

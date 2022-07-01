@@ -181,15 +181,15 @@
     "plutus-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1646650116,
-        "narHash": "sha256-S8uvyld7ZpPsmxZlWJeRNAPd+mw3PafrtaiiuU8H3KA=",
-        "owner": "input-output-hk",
+        "lastModified": 1656517502,
+        "narHash": "sha256-AKCOaMQag8EEJIoxci/KgiX3Qy/bIjiX67flGU40d4c=",
+        "owner": "stanislav-az",
         "repo": "plutus",
-        "rev": "4127e9cd6e889824d724c30eae55033cb50cbf3e",
+        "rev": "892bd2aa602ff2ee6b9be1bcc2d25b3618a5a892",
         "type": "github"
       },
       "original": {
-        "owner": "input-output-hk",
+        "owner": "stanislav-az",
         "repo": "plutus",
         "type": "github"
       }

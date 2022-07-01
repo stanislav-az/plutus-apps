@@ -6,7 +6,7 @@ error () {
     exit 1
 }
 
-readonly ops_repo="input-output-hk/plutus-ops"
+readonly ops_repo="stanislav-az/plutus-ops"
 readonly ops_branch="master"
 readonly name="plutus"
 readonly rev="${GITHUB_SHA:-}"

@@ -98,7 +98,7 @@ The WBE handles balancing, signing and submitting transaction requests from the 
 
 This is currently used for testing purposes and shouldn't be used in a production setting, because we wallets are normally controlled by the users themselves.
 
-A simple demo of this scenario is available here: `<https://github.com/input-output-hk/plutus-apps/tree/main/plutus-pab/test-node>`_.
+A simple demo of this scenario is available here: `<https://github.com/stanislav-az/plutus-apps/tree/main/plutus-pab/test-node>`_.
 
 Desktop wallet (Not yet supported)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -127,7 +127,7 @@ Therefore, browser wallets will need to call a PAB helper endpoint which can bal
 
     The hosted deployment scenario for the PAB communicating with a browser wallet.
 
-A simple demo of this scenario is available here: `<https://github.com/input-output-hk/plutus-apps/tree/main/plutus-pab-executables/demo/pab-nami>`_.
+A simple demo of this scenario is available here: `<https://github.com/stanislav-az/plutus-apps/tree/main/plutus-pab-executables/demo/pab-nami>`_.
 This demo is a work in progress.
 
 In-browser

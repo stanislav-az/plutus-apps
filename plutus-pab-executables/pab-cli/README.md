@@ -13,7 +13,7 @@ PAB CLI. This script allows the user to run the PAB in a hosted scenario, and pr
 
 THIS IS AN EXPERIMENT! DO NOT USE IN A PRODUCTION ENVIRONMENT.
 
-For any possible enhancements and suggestions, submit an issue on https://github.com/input-output-hk/plutus-apps/issues.
+For any possible enhancements and suggestions, submit an issue on https://github.com/stanislav-az/plutus-apps/issues.
 
 Usage: pab-cli
     pab-cli mocknet --pab-exe=<exe> [--pab-dir=<dir>] [--pab-db-pool-size=<size>] [--pab-port=<port>] [--pab-rollback-history=<n>] [--pab-passphrase] ([--pab-resume-from-block-id=<blockid> --pab-resume-fr
@@ -57,4 +57,4 @@ The tool currently supports the following three scenarios:
 
 ## Contribution
 
-If you see a potential enhancement (or problem), please submit an issue on [https://github.com/input-output-hk/plutus-apps/issues](https://github.com/input-output-hk/plutus-apps/issues).
+If you see a potential enhancement (or problem), please submit an issue on [https://github.com/stanislav-az/plutus-apps/issues](https://github.com/stanislav-az/plutus-apps/issues).

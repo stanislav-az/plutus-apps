@@ -15,7 +15,7 @@ extra-doc-files: README.md
 
 source-repository head
     type: git
-    location: https://github.com/input-output-hk/plutus-apps
+    location: https://github.com/stanislav-az/plutus-apps
 
 flag defer-plugin-errors
     description:

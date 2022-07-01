@@ -8,12 +8,12 @@ license-files:
 homepage: https://github.com/iohk/plutus-apps#readme
 bug-reports: https://github.com/iohk/plutus-apps/issues
 description:
-    Please see the README on GitHub at <https://github.com/input-output-hk/plutus-apps#readme>
+    Please see the README on GitHub at <https://github.com/stanislav-az/plutus-apps#readme>
 build-type: Simple
 
 source-repository head
     type: git
-    location: https://github.com/input-output-hk/plutus-apps
+    location: https://github.com/stanislav-az/plutus-apps
 
 common lang
     default-language: Haskell2010

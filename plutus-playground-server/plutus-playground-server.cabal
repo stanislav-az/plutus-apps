@@ -10,7 +10,7 @@ author: Kris Jenkins
 homepage: https://github.com/iohk/plutus#readme
 bug-reports: https://github.com/iohk/plutus/issues
 description:
-    Please see the README on GitHub at <https://github.com/input-output-hk/plutus#readme>
+    Please see the README on GitHub at <https://github.com/stanislav-az/plutus#readme>
 build-type: Simple
 data-files:
     usecases/Crowdfunding.hs
@@ -22,7 +22,7 @@ data-files:
 
 source-repository head
     type: git
-    location: https://github.com/input-output-hk/plutus-apps
+    location: https://github.com/stanislav-az/plutus-apps
 
 flag defer-plugin-errors
     description:

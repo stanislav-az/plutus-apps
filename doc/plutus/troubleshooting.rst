@@ -23,7 +23,7 @@ Some things you can do to fix it:
   - ``{-# OPTIONS_GHC -fno-omit-interface-pragmas #-}``
   - ``{-# OPTIONS_GHC -fobject-code #-}``
 
-  Some more details are in `the plutus-tx readme <https://github.com/input-output-hk/plutus/tree/master/plutus-tx#building-projects-with-plutus-tx>`_.
+  Some more details are in `the plutus-tx readme <https://github.com/stanislav-az/plutus/tree/master/plutus-tx#building-projects-with-plutus-tx>`_.
 
 If you don't need the plugin to succeed, f.e. when Haddock is building documentation,
 you can pass the GHC option ``-fplugin-opt Plutus.Tx.Plugin:defer-errors`` as a cli parameter::

@@ -9,7 +9,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report.
-        Please check the existing issues, [Plutus docs](https://plutus-apps.readthedocs.io/en/latest/), [technical report](https://github.com/input-output-hk/plutus-apps/blob/main/README.adoc#specifications-and-design) and [Cardano Stack Exchange](https://cardano.stackexchange.com/) before raising.
+        Please check the existing issues, [Plutus docs](https://plutus-apps.readthedocs.io/en/latest/), [technical report](https://github.com/stanislav-az/plutus-apps/blob/main/README.adoc#specifications-and-design) and [Cardano Stack Exchange](https://cardano.stackexchange.com/) before raising.
   - type: textarea
     id: summary
     attributes:
@@ -48,7 +48,7 @@ body:
   - type: textarea
     id: fix-it-yourself
     attributes:
-      label: Describe the approach you would take to fix this 
+      label: Describe the approach you would take to fix this
       description: If you would like to work on this yourself (optional!), then let us know what approach you would take so we can advise you.
     validations:
       required: false

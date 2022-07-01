@@ -263,7 +263,7 @@ mainFooter =
         ]
     , div
         [ classes [ navbarNav, mlAuto ] ]
-        [ makeNavItem $ text "GitHub" /\ "https://github.com/input-output-hk/plutus"
+        [ makeNavItem $ text "GitHub" /\ "https://github.com/stanislav-az/plutus"
         , makeNavItem $ text "Twitter" /\ "https://twitter.com/hashtag/Plutus"
         , makeNavItem $ text "Feedback" /\ "https://input-output.typeform.com/to/gQ0t9ep5"
         ]

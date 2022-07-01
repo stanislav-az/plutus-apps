@@ -107,7 +107,7 @@ let
       cat ${bashrc} > /home/${nonRootUser}/.bashrc
 
       # Because we map in the `./.cabal` folder from the users home directory,
-      # (see: https://github.com/input-output-hk/plutus-starter/blob/main/.devcontainer/devcontainer.json)
+      # (see: https://github.com/stanislav-az/plutus-starter/blob/main/.devcontainer/devcontainer.json)
       # and because docker won't let us map a volume not as root
       # (see: https://github.com/moby/moby/issues/2259 link), we have to make the
       # folder first and chown it ...

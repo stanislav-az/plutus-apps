@@ -1,4 +1,4 @@
-= https://github.com/input-output-hk/plutus-apps[The Plutus Application Framework]
+= https://github.com/stanislav-az/plutus-apps[The Plutus Application Framework]
 :email: plutus@iohk.io
 :author: Input Output HK Limited
 :toc: left
@@ -54,7 +54,7 @@ The generated Haskell API documentation (haddocks) are here:
 
 === How to submit an issue
 
-Issues can be filed in the https://github.com/input-output-hk/plutus-apps/issues[GitHub Issue tracker].
+Issues can be filed in the https://github.com/stanislav-az/plutus-apps/issues[GitHub Issue tracker].
 
 However, note that this is pre-release software, so we will not usually be providing support.
 
@@ -72,7 +72,7 @@ So for the time being, you need to:
 . Copy the `source-repository-package` stanzas from our `cabal.project` to yours.
 . Copy additional stanzas from our `cabal.project` as you need, e.g. you may need some of the `allow-newer` stanzas.
 
-The https://github.com/input-output-hk/plutus-starter[plutus-starter] project provides an example.
+The https://github.com/stanislav-az/plutus-starter[plutus-starter] project provides an example.
 
 === How to build the project's artifacts
 
@@ -132,7 +132,7 @@ The Plutus Playground is automatically deployed upon certain pushes to GitHub
 * https://plutus-playground-plutus-apps-staging.plutus.aws.iohkdev.io/[Staging] is deployed from every commit pushed to `main` (this URL subject to change)
 * https://playground.plutus.iohkdev.io/[Production] is deployed from every release tag (matching `vYYYY-MM-DD`)
 
-For more details, including instructions for setting up ad hoc testing deployments, see https://github.com/input-output-hk/plutus-ops[the plutus-ops repo].
+For more details, including instructions for setting up ad hoc testing deployments, see https://github.com/stanislav-az/plutus-ops[the plutus-ops repo].
 
 [[nix-advice]]
 == Nix

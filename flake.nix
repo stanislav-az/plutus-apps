@@ -58,7 +58,7 @@
       flake = false;
     };
     plutus-core = {
-      url = "github:input-output-hk/plutus";
+      url = "github:stanislav-az/plutus";
       flake = false;
     };
     pre-commit-hooks-nix = {

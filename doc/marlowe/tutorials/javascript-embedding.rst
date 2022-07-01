@@ -4,7 +4,7 @@ Marlowe embedded in JavaScript
 ==============================
 
 Marlowe is written as a Haskell data type, and thus it is
-straightforward to describe Marlowe smart contracts using Haskell. But since Marlowe contracts are “just” 
+straightforward to describe Marlowe smart contracts using Haskell. But since Marlowe contracts are “just”
 a form of data, we can equally well represent them in other languages.
 
 Here we describe a library written in TypeScript that can
@@ -14,7 +14,7 @@ are not familiar with TypeScript, you can also use the API as if it was
 written in JavaScript since TypeScript is a superset of JavaScript.
 
 You can try the library online in the
-Marlowe Playground by selecting **Start in JavaScript** on the home page, or by opening one of the 
+Marlowe Playground by selecting **Start in JavaScript** on the home page, or by opening one of the
 JavaScript examples.
 
 We begin this section by explaining the embedding, then explain a couple of particular points about
@@ -25,14 +25,14 @@ Using the JS Editor in the Marlowe Playground
 
 
 The library implementation itself is straightforward, and you can find all of
-its source code here: https://github.com/input-output-hk/plutus/blob/master/marlowe-playground-client/src/Language/Javascript/MarloweJS.ts
+its source code here: https://github.com/stanislav-az/plutus/blob/master/marlowe-playground-client/src/Language/Javascript/MarloweJS.ts
 It is based on the principle that for each Haskell *type* there is a corresponding TypeScript type, and
 corresponding to each *constructor* there is a constant definition.
 
 .. image:: images/JavaScriptImport.png
    :alt: JavaScript import
 
-   
+
 The JavaScript/TypeScript library provides constant definitions for
 Marlowe constructs that have no arguments, as is the case of
 ``SlotIntervalEnd``:
