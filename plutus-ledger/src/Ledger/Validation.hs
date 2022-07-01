@@ -248,8 +248,8 @@ getTxExUnits utxo (C.Api.ShelleyTx _ tx) =
     -- But for now just return a huge execution budget so it will run later where we do handle failing transactions.
     toCardanoLedgerError (C.Ledger.ValidationFailedV1 (P.CekError _) logs@(_:_)) | last logs == Builtins.fromBuiltin checkHasFailedError =
       Right $ ExUnits 10000000 10000000000
-    toCardanoLedgerError (C.Ledger.ValidationFailedV1 (P.CekError _) logs) =
-      Left $ Left (P.Phase2, P.ScriptFailure (P.EvaluationError logs "CekEvaluationFailure"))
+    toCardanoLedgerError (C.Ledger.ValidationFailedV1 (P.CekError ce) logs) =
+      Left $ Left (P.Phase2, P.ScriptFailure (P.EvaluationError logs (show ce)))
     toCardanoLedgerError e = Left $ Left (P.Phase2, P.CardanoLedgerValidationError (show e))
 
 makeTransactionBody
